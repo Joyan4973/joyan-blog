@@ -34,9 +34,9 @@ export const siteConfig: SiteConfig = {
 		// 显示模式："text-icon" 显示图标+文本，"logo" 仅显示Logo
 		mode: "text-icon",
 		// 顶栏标题文本
-		text: "from Joyan",
+		text: "Joyan",
 		// 顶栏标题图标路径，默认使用 public/assets/home/home.webp
-		icon: "assets/home/home.webp",
+		icon: "assets/home/joyan-logo.webp",
 		// 网站Logo图片路径
 		logo: "assets/home/default-logo.webp",
 	},
@@ -190,11 +190,11 @@ export const siteConfig: SiteConfig = {
 	generateOgImages: false, // 启用生成OpenGraph图片功能,注意开启后要渲染很长时间，不建议本地调试的时候开启
 	favicon: [
 		// 留空以使用默认 favicon
-		// {
-		//   src: '/favicon/icon.png',    // 图标文件路径
+		{
+		src: '/favicon/favicon.png',    // 图标文件路径
 		//   theme: 'light',              // 可选，指定主题 'light' | 'dark'
-		//   sizes: '32x32',              // 可选，图标大小
-		// }
+		sizes: 'any',              // 可选，图标大小
+		}
 	],
 
 	// 字体现在通过 astro.config.mjs 的 fonts 选项配置（Astro Font API）

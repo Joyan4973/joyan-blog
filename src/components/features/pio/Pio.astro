@@ -6,223 +6,368 @@ interface Props {
 }
 
 const { config } = Astro.props;
-
-const modelPaths = config.models ?? ["/pio/models/NOIR/noir.model3.json"];
-const modelConfigs = modelPaths.map((p) => ({ path: p }));
-
-const position = config.position === "right" ? "bottom-right" : "bottom-left";
-
-const tipsData: Record<string, unknown> = {};
-if (config.tips) {
-	if (config.tips.welcomeMessage)
-		tipsData.welcomeMessage = config.tips.welcomeMessage;
-	if (config.tips.messages) tipsData.messages = config.tips.messages;
-	if (config.tips.duration) tipsData.duration = config.tips.duration;
-	if (config.tips.interval) tipsData.interval = config.tips.interval;
-} else if (config.dialog?.welcome || config.dialog?.touch) {
-	const welcome = config.dialog.welcome;
-	const touch = config.dialog.touch;
-	if (welcome)
-		tipsData.welcomeMessage = Array.isArray(welcome) ? welcome : [welcome];
-	if (touch) tipsData.messages = Array.isArray(touch) ? touch : [touch];
-}
-
-const widgetConfig: Record<string, unknown> = {
-	model: modelConfigs.length === 1 ? modelConfigs[0] : modelConfigs,
-	position,
-	size: config.width ?? 280,
-	transitionDuration: 1500,
-	transitionType: "slide",
-	_hideAbout: config.hideAboutMenu ?? true,
-};
-
-if (config.menus?.items && config.menus.items.length > 0) {
-	widgetConfig.menus = {
-		items: config.menus.items.map(({ icon, label, action }) => ({
-			icon,
-			label,
-			action,
-		})),
-		...(config.menus.align && { align: config.menus.align }),
-	};
-}
-
-if (Object.keys(tipsData).length > 0) {
-	if (!Array.isArray(widgetConfig.model)) {
-		(widgetConfig.model as Record<string, unknown>).tips = tipsData;
-	}
-}
-
-const widgetWidth = config.width ?? 280;
-const hiddenOnMobile = config.hiddenOnMobile ?? true;
+const image = config.image ?? "/pio/anya-mascot.png";
+const width = config.width ?? 260;
+const height = config.height ?? 390;
 const isRight = config.position === "right";
+const hiddenOnMobile = config.hiddenOnMobile ?? true;
+const welcome = config.dialog?.welcome ?? "欢迎来到我的博客！";
+const touchMessages = config.dialog?.touch ?? ["你好呀！"];
+const welcomeMessages = Array.isArray(welcome) ? welcome : [welcome];
+const welcomeMessage = welcomeMessages[0];
+const messages = Array.isArray(touchMessages) ? touchMessages : [touchMessages];
 ---
 
-<iframe
-	id="l2d-iframe"
-	src="/pio/live2d-host.html"
-	allowtransparency="true"
-	style={"position: fixed; z-index: 999; pointer-events: none; border: none; bottom: 0;"
-		+ (isRight ? " right: 0;" : " left: 0;")
-		+ " width: " + widgetWidth + "px;"
-		+ " height: 600px;"
-		+ " opacity: 0;"}
-	data-config={JSON.stringify(widgetConfig)}
-	data-hidden-on-mobile={hiddenOnMobile ? "true" : "false"}
-	data-width={widgetWidth}
-></iframe>
+<aside
+	id="blog-mascot"
+	class:list={[
+		"blog-mascot",
+		isRight ? "blog-mascot--right" : "blog-mascot--left",
+		hiddenOnMobile && "blog-mascot--mobile-hidden",
+	]}
+	style={`--mascot-width: ${width}px; --mascot-height: ${height}px;`}
+	data-welcome={welcomeMessage}
+	data-welcome-messages={JSON.stringify(welcomeMessages)}
+	data-messages={JSON.stringify(messages)}
+	data-close-message={config.dialog?.close ?? "下次再见～"}
+>
+	<div class="blog-mascot__bubble" role="status" aria-live="polite">
+		{welcomeMessage}
+	</div>
+
+	<div class="blog-mascot__actions" aria-label="看板娘操作">
+		<a class="blog-mascot__action" href="/" title={config.dialog?.home ?? "返回首页"} aria-label="返回首页">⌂</a>
+		<button class="blog-mascot__action" type="button" data-action="top" title="回到顶部" aria-label="回到顶部">↑</button>
+		{
+			config.dialog?.link && (
+				<a class="blog-mascot__action" href={config.dialog.link} target="_blank" rel="noreferrer" title="访问个人主页" aria-label="访问个人主页">↗</a>
+			)
+		}
+		<button class="blog-mascot__action" type="button" data-action="close" title="关闭看板娘" aria-label="关闭看板娘">×</button>
+	</div>
+
+	<button class="blog-mascot__character" type="button" aria-label="和阿尼亚打招呼">
+		<img src={image} alt="挥手问候的阿尼亚看板娘" width="1024" height="1536" loading="eager" decoding="async" />
+	</button>
+</aside>
+
+<button
+	id="mascot-summon"
+	class:list={["blog-mascot__summon", hiddenOnMobile && "blog-mascot--mobile-hidden"]}
+	type="button"
+	title="重新召唤阿尼亚"
+	aria-label="重新召唤阿尼亚"
+	aria-controls="blog-mascot"
+	aria-hidden="true"
+	tabindex="-1"
+>
+	<span aria-hidden="true">🥜</span>
+</button>
 
 <script>
-	type PioController = {
-		update: (
-			el: HTMLIFrameElement,
-			config: Record<string, unknown>,
-			hiddenOnMobile: boolean,
-		) => void;
-	};
+	function setupMascot() {
+		const mascot = document.querySelector<HTMLElement>("#blog-mascot");
+		if (!mascot || mascot.dataset.initialized === "true") return;
+		mascot.dataset.initialized = "true";
 
-	const win = window as Window & { __mizukiPioController?: PioController };
-	const scriptEl = document.currentScript as HTMLScriptElement | null;
-	const renderedEl =
-		scriptEl?.previousElementSibling instanceof HTMLIFrameElement &&
-		scriptEl.previousElementSibling.id === "l2d-iframe"
-			? scriptEl.previousElementSibling
-			: null;
-	const frames = Array.from(
-		document.querySelectorAll<HTMLIFrameElement>("#l2d-iframe"),
-	);
-	const el = frames[0] ?? renderedEl;
-	const configSource = renderedEl ?? el;
+		const bubble = mascot.querySelector<HTMLElement>(".blog-mascot__bubble");
+		const character = mascot.querySelector<HTMLButtonElement>(".blog-mascot__character");
+		const topButton = mascot.querySelector<HTMLButtonElement>('[data-action="top"]');
+		const closeButton = mascot.querySelector<HTMLButtonElement>('[data-action="close"]');
+		const summonButton = document.querySelector<HTMLButtonElement>("#mascot-summon");
+		let hideTimer: number | undefined;
 
-	for (const frame of frames) {
-		if (frame !== el) frame.remove();
-	}
-
-	if (el && configSource) {
-		const config = JSON.parse(configSource.dataset.config || "{}");
-		const hiddenOnMobile = configSource.dataset.hiddenOnMobile === "true";
-
-		if (!win.__mizukiPioController) {
-			const menuActions: Record<string, () => void> = {
-				home: () => (window.location.href = "/"),
-				scrollToTop: () => window.scrollTo({ top: 0, behavior: "smooth" }),
-			};
-
-			let currentEl: HTMLIFrameElement | null = null;
-			let currentConfig: Record<string, unknown> = {};
-			let currentHiddenOnMobile = true;
-			let isTransitioning = false;
-			let initSent = false;
-			let currentConfigKey = "";
-			let pendingInit: number | undefined;
-			let swupHooksRegistered = false;
-
-			function applyVisibility() {
-				if (!currentEl) return;
-				if (currentHiddenOnMobile && window.innerWidth <= 1280) {
-					currentEl.style.display = "none";
-				} else {
-					currentEl.style.display = "";
-				}
-			}
-
-			function postInit() {
-				if (!currentEl || initSent || isTransitioning) return;
-				if (currentHiddenOnMobile && window.innerWidth <= 1280) return;
-				currentEl.contentWindow?.postMessage(
-					{ type: "l2d-init", config: currentConfig },
-					"*",
-				);
-				initSent = true;
-			}
-
-			function scheduleInit() {
-				window.clearTimeout(pendingInit);
-				const _window = window as Window & {
-					requestIdleCallback?: (
-						callback: IdleRequestCallback,
-						options?: IdleRequestOptions,
-					) => number;
-				};
-				const run = () => {
-					pendingInit = window.setTimeout(postInit, 0);
-				};
-				if (_window.requestIdleCallback) {
-					_window.requestIdleCallback(run, { timeout: 2000 });
-				} else {
-					pendingInit = window.setTimeout(postInit, 500);
-				}
-			}
-
-			function handleMessage(e: MessageEvent) {
-				if (!currentEl || e.source !== currentEl.contentWindow) return;
-
-				if (e.data.type === "l2d-loaded") {
-					const h = e.data.contentHeight || 500;
-					currentEl.style.height = h + "px";
-					currentEl.style.opacity = "1";
-					currentEl.style.pointerEvents = "auto";
-				}
-
-				if (e.data.type === "l2d-action") {
-					menuActions[e.data.action]?.();
-				}
-			}
-
-			function setupSwupHooks() {
-				const swup = window.swup;
-				if (swupHooksRegistered || !swup?.hooks) return;
-				swupHooksRegistered = true;
-
-				swup.hooks.on("link:click", () => {
-					isTransitioning = true;
-				});
-
-				swup.hooks.on("visit:end", () => {
-					isTransitioning = false;
-					scheduleInit();
-				});
-			}
-
-			window.addEventListener("message", handleMessage);
-			window.addEventListener("resize", () => {
-				applyVisibility();
-				scheduleInit();
-			});
-
-			if (window.swup) {
-				setupSwupHooks();
-			} else {
-				document.addEventListener("swup:enable", setupSwupHooks, {
-					once: true,
-				});
-			}
-
-			win.__mizukiPioController = {
-				update(nextEl, nextConfig, nextHiddenOnMobile) {
-					const isNewFrame = currentEl !== nextEl;
-					const nextConfigKey = JSON.stringify(nextConfig);
-					currentEl = nextEl;
-					currentConfig = nextConfig;
-					currentHiddenOnMobile = nextHiddenOnMobile;
-					if (isNewFrame || currentConfigKey !== nextConfigKey) {
-						initSent = false;
-						currentConfigKey = nextConfigKey;
-					}
-					if (isNewFrame) {
-						nextEl.addEventListener("load", () => {
-							initSent = false;
-							scheduleInit();
-						});
-					}
-					applyVisibility();
-					if (nextEl.contentDocument?.readyState === "complete") {
-						scheduleInit();
-					}
-				},
-			};
+		function setMascotClosed(closed: boolean) {
+			mascot.classList.toggle("is-closed", closed);
+			summonButton?.classList.toggle("is-visible", closed);
+			summonButton?.setAttribute("aria-hidden", String(!closed));
+			if (summonButton) summonButton.tabIndex = closed ? 0 : -1;
 		}
 
-		win.__mizukiPioController.update(el, config, hiddenOnMobile);
+		function showMessage(message: string, duration = 3800) {
+			if (!bubble) return;
+			window.clearTimeout(hideTimer);
+			bubble.textContent = message;
+			bubble.classList.add("is-visible");
+			hideTimer = window.setTimeout(() => bubble.classList.remove("is-visible"), duration);
+		}
+
+		let messages: string[] = [];
+		let welcomeMessages: string[] = [];
+		try {
+			messages = JSON.parse(mascot.dataset.messages || "[]");
+			welcomeMessages = JSON.parse(mascot.dataset.welcomeMessages || "[]");
+		} catch {
+			messages = [];
+			welcomeMessages = [];
+		}
+
+		character?.addEventListener("click", () => {
+			character.classList.remove("is-greeting");
+			void character.offsetWidth;
+			character.classList.add("is-greeting");
+			const message = messages[Math.floor(Math.random() * messages.length)] ?? "哇酷哇酷！";
+			showMessage(message);
+		});
+
+		character?.addEventListener("pointerenter", (event) => {
+			if (event.pointerType === "mouse") character.classList.add("is-hovered");
+		});
+
+		character?.addEventListener("pointerleave", () => {
+			character.classList.remove("is-hovered");
+		});
+
+		character?.addEventListener("animationend", (event) => {
+			if (event.animationName === "mascot-greeting") character.classList.remove("is-greeting");
+		});
+
+		topButton?.addEventListener("click", () => {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+			showMessage("已经回到顶部啦！");
+		});
+
+		closeButton?.addEventListener("click", () => {
+			showMessage(mascot.dataset.closeMessage || "下次再见～", 650);
+			window.setTimeout(() => setMascotClosed(true), 550);
+		});
+
+		summonButton?.addEventListener("click", () => {
+			setMascotClosed(false);
+			character?.classList.remove("is-greeting", "is-hovered");
+			if (character) {
+				void character.offsetWidth;
+				character.classList.add("is-greeting");
+			}
+			showMessage("哇酷哇酷！阿尼亚回来啦！");
+		});
+
+		window.setTimeout(() => {
+			const fallback = mascot.dataset.welcome || "欢迎来到我的博客！";
+			const message = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)] ?? fallback;
+			showMessage(message);
+		}, 450);
 	}
+
+	setupMascot();
+	document.addEventListener("astro:page-load", setupMascot);
+	document.addEventListener("swup:contentReplaced", setupMascot);
 </script>
+
+<style>
+	.blog-mascot {
+		position: fixed;
+		bottom: 0;
+		z-index: 999;
+		width: var(--mascot-width);
+		height: min(var(--mascot-height), 52vh);
+		transition: opacity 0.25s ease, transform 0.35s ease;
+		filter: drop-shadow(0 10px 14px rgb(15 23 42 / 0.22));
+	}
+
+	.blog-mascot--left { left: 14px; }
+	.blog-mascot--right { right: 14px; }
+
+	.blog-mascot.is-closed {
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(45%);
+	}
+
+	.blog-mascot__character {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		cursor: pointer;
+		z-index: 1;
+		transform-origin: 50% 100%;
+		animation: mascot-breathe 3.6s ease-in-out infinite;
+	}
+
+	.blog-mascot__character img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: center bottom;
+		user-select: none;
+		-webkit-user-drag: none;
+	}
+
+	.blog-mascot__character.is-greeting {
+		animation: mascot-greeting 0.65s ease-in-out, mascot-breathe 3.6s 0.65s ease-in-out infinite;
+	}
+
+	.blog-mascot__character.is-hovered:not(.is-greeting) {
+		animation: mascot-hover 1.05s ease-in-out infinite;
+	}
+
+	.blog-mascot__bubble {
+		position: absolute;
+		left: 50%;
+		bottom: calc(100% - 28px);
+		width: max-content;
+		max-width: 240px;
+		padding: 9px 13px;
+		border: 1px solid rgb(148 163 184 / 0.35);
+		border-radius: 14px;
+		background: rgb(255 255 255 / 0.94);
+		box-shadow: 0 8px 24px rgb(15 23 42 / 0.16);
+		color: #334155;
+		font-size: 13px;
+		line-height: 1.5;
+		text-align: center;
+		z-index: 4;
+		opacity: 0;
+		pointer-events: none;
+		transform: translate(-50%, 8px) scale(0.96);
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	.blog-mascot__bubble::after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		border: 7px solid transparent;
+		border-top-color: rgb(255 255 255 / 0.94);
+		transform: translateX(-50%);
+	}
+
+	.blog-mascot__bubble.is-visible {
+		opacity: 1;
+		transform: translate(-50%, 0) scale(1);
+	}
+
+	.blog-mascot__actions {
+		position: absolute;
+		top: 48%;
+		right: -12px;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		z-index: 5;
+		opacity: 0.82;
+		pointer-events: auto;
+		transform: translateX(0);
+		transition: opacity 0.2s ease, transform 0.2s ease;
+	}
+
+	.blog-mascot:hover .blog-mascot__actions,
+	.blog-mascot:focus-within .blog-mascot__actions {
+		opacity: 1;
+		transform: translateX(2px);
+	}
+
+	.blog-mascot__action {
+		display: grid;
+		position: relative;
+		z-index: 6;
+		width: 34px;
+		height: 34px;
+		place-items: center;
+		border: 1px solid rgb(148 163 184 / 0.3);
+		border-radius: 999px;
+		background: rgb(255 255 255 / 0.92);
+		box-shadow: 0 4px 12px rgb(15 23 42 / 0.14);
+		color: #475569;
+		font: 600 17px/1 system-ui, sans-serif;
+		text-decoration: none;
+		cursor: pointer;
+		touch-action: manipulation;
+		user-select: none;
+		transition: color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+	}
+
+	.blog-mascot__action:hover {
+		background: #fff;
+		color: #7c3aed;
+		transform: scale(1.08);
+	}
+
+	.blog-mascot__summon {
+		position: fixed;
+		left: 18px;
+		bottom: 18px;
+		z-index: 1000;
+		display: grid;
+		width: 48px;
+		height: 48px;
+		place-items: center;
+		padding: 0;
+		border: 2px solid rgb(180 83 9 / 0.26);
+		border-radius: 999px;
+		background: linear-gradient(145deg, #fef3c7, #fbbf24);
+		box-shadow: 0 8px 20px rgb(120 53 15 / 0.22);
+		font: 27px/1 system-ui, sans-serif;
+		cursor: pointer;
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(12px) scale(0.72) rotate(-8deg);
+		transition: opacity 0.22s ease, transform 0.28s ease, box-shadow 0.2s ease;
+	}
+
+	.blog-mascot__summon.is-visible {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(0) scale(1) rotate(0);
+	}
+
+	.blog-mascot__summon.is-visible:hover,
+	.blog-mascot__summon.is-visible:focus-visible {
+		box-shadow: 0 10px 24px rgb(120 53 15 / 0.3);
+		transform: translateY(-3px) scale(1.08) rotate(-6deg);
+	}
+
+	.blog-mascot__summon:focus-visible {
+		outline: 3px solid rgb(124 58 237 / 0.38);
+		outline-offset: 3px;
+	}
+
+	@keyframes mascot-breathe {
+		0%, 100% { transform: translateY(0) rotate(-0.4deg); }
+		50% { transform: translateY(-5px) rotate(0.5deg); }
+	}
+
+	@keyframes mascot-greeting {
+		0%, 100% { transform: rotate(0); }
+		30% { transform: rotate(-2.5deg) scale(1.025); }
+		65% { transform: rotate(1.8deg) scale(1.015); }
+	}
+
+	@keyframes mascot-hover {
+		0%, 100% { transform: translateY(0) rotate(-0.8deg) scale(1); }
+		35% { transform: translateY(-9px) rotate(-2.2deg) scale(1.025); }
+		70% { transform: translateY(-4px) rotate(1.8deg) scale(1.015); }
+	}
+
+	@media (max-width: 900px) {
+		.blog-mascot--mobile-hidden { display: none; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.blog-mascot__character,
+		.blog-mascot__character.is-greeting,
+		.blog-mascot__character.is-hovered { animation: none; }
+	}
+
+	:global(.dark) .blog-mascot__bubble,
+	:global(.dark) .blog-mascot__action {
+		border-color: rgb(148 163 184 / 0.22);
+		background: rgb(30 41 59 / 0.94);
+		color: #e2e8f0;
+	}
+
+	:global(.dark) .blog-mascot__summon {
+		border-color: rgb(251 191 36 / 0.32);
+		background: linear-gradient(145deg, #78350f, #b45309);
+	}
+
+	:global(.dark) .blog-mascot__bubble::after {
+		border-top-color: rgb(30 41 59 / 0.94);
+	}
+</style>

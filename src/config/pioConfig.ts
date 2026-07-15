@@ -3,24 +3,40 @@ import type { PioConfig } from "../types/config";
 // Pio 看板娘配置
 export const pioConfig: PioConfig = {
 	enable: true, // 启用看板娘
-	models: ["/pio/models/NOIR/noir.model3.json"], // 默认模型路径
+	image: "/pio/anya-mascot.png", // 静态看板娘图片
 	position: "left", // 模型位置
-	width: 280, // 默认宽度
-	height: 250, // 默认高度
-	mode: "draggable", // 默认为可拖拽模式
+	width: 260, // 显示宽度
+	height: 390, // 最大显示高度
+	mode: "fixed", // 固定在页面左下角
 	hiddenOnMobile: true, // 默认在移动设备上隐藏
-	hideAboutMenu: false, // 隐藏内置 About 菜单按钮
 	dialog: {
-		welcome: "Welcome to Mizuki Website!", // 欢迎词
+		welcome: [
+			"哇酷哇酷！欢迎来到 Joyan Blog！",
+			"欢迎回来！阿尼亚等你好久啦！",
+			"今天也来执行博客探索任务吧！",
+		], // 欢迎词
 		touch: [
-			"What are you doing?",
-			"Stop touching me!",
-			"HENTAI!",
-			"Don't bully me like that!",
+			"今天也要开心呀！",
+			"阿尼亚会努力帮忙的！",
+			"哇酷哇酷！",
+			"欢迎常来看看！",
+			"阿尼亚最喜欢花生啦！",
+			"为了世界和平，今天也要认真学习！",
+			"今天的任务：读完一篇博客文章！",
+			"要努力获得一颗星星！",
+			"父亲今天也在执行秘密任务吗？",
+			"母亲的料理……阿尼亚已经做好准备了！",
+			"邦德，帮阿尼亚看看今天会发生什么！",
+			"阿尼亚好像发现了一个有趣的秘密！",
+			"次子今天有没有认真学习呢？",
+			"休息一下，再继续完成任务吧！",
+			"遇到困难也不能放弃，阿尼亚会加油！",
+			"这个博客里一定还藏着新的任务！",
+			"福杰一家，集合！",
+			"花生可以让心情变得更好！",
 		], // 触摸提示
-		home: "Click here to go back to homepage!", // 首页提示
-		skin: ["Want to see my new outfit?", "The new outfit looks great~"], // 换装提示
-		close: "QWQ See you next time~", // 关闭提示
-		link: "https://github.com/LyraVoid/Mizuki", // 关于链接
+		home: "返回博客首页", // 首页提示
+		close: "下次再见～", // 关闭提示
+		link: "https://github.com/Joyan4973", // 个人主页链接
 	},
 };

@@ -474,6 +474,7 @@ export interface FullscreenWallpaperConfig {
  */
 export interface PioConfig {
 	enable: boolean; // 是否启用看板娘
+	image?: string; // 静态看板娘图片路径（相对于 public 目录）
 	models?: string[]; // 模型文件路径数组（支持 .model.json 和 .model3.json）
 	position?: "left" | "right"; // 看板娘位置
 	width?: number; // 看板娘宽度

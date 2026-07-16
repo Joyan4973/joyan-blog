@@ -9,7 +9,7 @@
   Access-Control-Max-Age: 86400
 
 /*
-  Cache-Control: public, max-age=3600, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /_astro/*
   ! Cache-Control

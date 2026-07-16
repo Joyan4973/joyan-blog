@@ -1,14 +1,15 @@
 ---
-title: "Linux 网络编程"
+title: "Linux 网络编程（1）：网络基础模型"
 published: 2026-07-17
 updated: 2026-07-17
-description: "整理 ISO/OSI 七层模型、常见网络协议、TCP 与 UDP、IP、端口、Socket 及网络设备等基础知识。"
+description: "Linux 网络编程课程第 1 课，整理 ISO/OSI 七层模型、常见网络协议、TCP 与 UDP、IP、端口、Socket 及网络设备等基础知识。"
 image: ""
 tags:
   - Linux
   - 网络编程
   - 计算机网络
-category: 学习记录
+  - 课程笔记
+category: Linux 网络编程
 draft: false
 pinned: false
 comment: true

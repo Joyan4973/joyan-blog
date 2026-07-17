@@ -113,6 +113,17 @@ export const siteConfig: SiteConfig = {
 				"/assets/desktop-banner/2.webp",
 				"/assets/desktop-banner/3.webp",
 				"/assets/desktop-banner/4.webp",
+				"/assets/desktop-banner/5.webp",
+				"/assets/desktop-banner/6.webp",
+				"/assets/desktop-banner/7.webp",
+				"/assets/desktop-banner/8.webp",
+				"/assets/desktop-banner/9.webp",
+				"/assets/desktop-banner/10.webp",
+				"/assets/desktop-banner/11.webp",
+				"/assets/desktop-banner/12.webp",
+				"/assets/desktop-banner/13.webp",
+				"/assets/desktop-banner/14.webp",
+				"/assets/desktop-banner/15.webp",
 			], // 桌面横幅图片
 			mobile: [
 				"/assets/mobile-banner/1.webp",
@@ -154,6 +165,8 @@ export const siteConfig: SiteConfig = {
 			subtitle: [
 				"欢迎到访！",
 				"所有的出发都是为了更好的回来。",
+				"不必急着抵达，沿途也在塑造答案。",
+				"记录不是为了留住过去，而是为了看清来路。",
 				// "君ってさ、知らないうちに私の毎日になってたよ",
 				// "君と話すと、なんか毎日がちょっと楽しくなるんだ",
 				// "今日はなんでもない日。でも、ちょっとだけいい日",

@@ -6,7 +6,7 @@ image: ""
 tags: [博客, Astro, Mizuki]
 category: 建站记录
 draft: false
-pinned: true
+pinned: false
 comment: false
 ---
 

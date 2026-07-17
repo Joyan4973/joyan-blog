@@ -35,9 +35,9 @@ async function getRawSortedPosts() {
 		}
 
 		// 否则按发布日期排序
-		const dateA = new Date(a.data.published);
-		const dateB = new Date(b.data.published);
-		return dateA > dateB ? -1 : 1;
+		const dateA = new Date(a.data.published).getTime();
+		const dateB = new Date(b.data.published).getTime();
+		return dateB - dateA;
 	});
 	return sorted;
 }

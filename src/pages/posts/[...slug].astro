@@ -97,6 +97,8 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 const { remarkPluginFrontmatter } = await render(entry);
+const readingMinutes =
+	entry.data.readingTime ?? remarkPluginFrontmatter.minutes;
 
 // 获取相关文章
 const relatedPosts = relatedPostsConfig.enable
@@ -250,7 +252,7 @@ const jsonLd = {
 				</div>
 				<div class="flex flex-row items-center">
 					<ReadingTime
-						minutes={remarkPluginFrontmatter.minutes}
+						minutes={readingMinutes}
 						variant="card"
 					/>
 				</div>

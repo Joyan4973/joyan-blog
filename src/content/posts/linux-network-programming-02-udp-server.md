@@ -1,7 +1,7 @@
 ---
 title: "Linux 网络编程（2）：基于 UDP 协议通信的服务端实现"
-published: 2026-07-18T00:03:00Z
-updated: 2026-07-18T00:03:00Z
+published: 2026-07-17T00:00:00Z
+updated: 2026-07-17T00:00:00Z
 description: "Linux 网络编程课程第 2 课，整理 UDP 服务端的基本流程，以及 Winsock2 初始化、套接字创建、地址绑定、数据接收与发送等实现细节。"
 image: ""
 tags:
@@ -14,6 +14,7 @@ category: Linux 网络编程
 draft: false
 pinned: false
 comment: true
+readingTime: 20
 lang: zh_CN
 ---
 

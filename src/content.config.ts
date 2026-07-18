@@ -16,6 +16,7 @@ const postsCollection = defineCollection({
 		lang: z.string().optional().default(""),
 		pinned: z.boolean().optional().default(false),
 		comment: z.boolean().optional().default(true),
+		readingTime: z.number().int().positive().optional(),
 		priority: z.number().optional(),
 		author: z.string().optional().default(""),
 		sourceLink: z.string().optional().default(""),

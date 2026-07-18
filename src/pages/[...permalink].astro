@@ -77,6 +77,8 @@ const { entry } = Astro.props;
 const { Content, headings } = await render(entry);
 
 const { remarkPluginFrontmatter } = await render(entry);
+const readingMinutes =
+	entry.data.readingTime ?? remarkPluginFrontmatter.minutes;
 
 // 处理加密逻辑
 const isEncrypted = !!(entry.data.encrypted && entry.data.password);
@@ -158,11 +160,11 @@ const jsonLd = {
 						/>
 					</div>
 					<div class="text-sm">
-						{remarkPluginFrontmatter.minutes}
+						{readingMinutes}
 						{
 							" " +
 								i18n(
-									remarkPluginFrontmatter.minutes === 1
+									readingMinutes === 1
 										? I18nKey.minuteCount
 										: I18nKey.minutesCount,
 								)

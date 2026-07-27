@@ -68,6 +68,7 @@ const messages = Array.isArray(touchMessages) ? touchMessages : [touchMessages];
 	function setupMascot() {
 		const mascot = document.querySelector<HTMLElement>("#blog-mascot");
 		if (!mascot || mascot.dataset.initialized === "true") return;
+		const mascotElement = mascot;
 		mascot.dataset.initialized = "true";
 
 		const bubble = mascot.querySelector<HTMLElement>(".blog-mascot__bubble");
@@ -78,7 +79,7 @@ const messages = Array.isArray(touchMessages) ? touchMessages : [touchMessages];
 		let hideTimer: number | undefined;
 
 		function setMascotClosed(closed: boolean) {
-			mascot.classList.toggle("is-closed", closed);
+			mascotElement.classList.toggle("is-closed", closed);
 			summonButton?.classList.toggle("is-visible", closed);
 			summonButton?.setAttribute("aria-hidden", String(!closed));
 			if (summonButton) summonButton.tabIndex = closed ? 0 : -1;

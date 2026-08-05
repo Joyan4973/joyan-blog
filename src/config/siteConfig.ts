@@ -124,12 +124,19 @@ export const siteConfig: SiteConfig = {
 				"/assets/desktop-banner/13.webp",
 				"/assets/desktop-banner/14.webp",
 				"/assets/desktop-banner/15.webp",
+				"/assets/desktop-banner/16.webp",
 			], // 桌面横幅图片
 			mobile: [
 				"/assets/mobile-banner/1.webp",
 				"/assets/mobile-banner/2.webp",
 				"/assets/mobile-banner/3.webp",
 				"/assets/mobile-banner/4.webp",
+				"/assets/mobile-banner/5.webp",
+				"/assets/mobile-banner/6.webp",
+				"/assets/mobile-banner/7.webp",
+				"/assets/mobile-banner/8.webp",
+				"/assets/mobile-banner/9.webp",
+				"/assets/mobile-banner/10.webp",
 			], // 移动横幅图片
 		}, // 使用本地横幅图片
 

@@ -2,9 +2,10 @@
 title: "Linux 网络编程（17）：IM 聊天系统——数据库设计和创建、注册功能实现、登录功能实现"
 published: 2026-08-08T14:46:02Z
 updated: 2026-08-08T14:46:02Z
-description: "Linux 网络编程课程第 17 课，整理 IM 聊天系统的协议分发、用户与好友数据库设计、MySQL 连接以及注册功能，并为登录请求处理预留入口。"
+description: "Linux 网络编程系列第 17 篇，整理 IM 聊天系统的协议分发、用户与好友数据库设计、MySQL 连接以及注册功能，并为登录请求处理预留入口。"
 image: ""
 tags:
+  - IM 聊天系统阶段
   - Linux
   - 网络编程
   - IM 聊天系统
@@ -13,7 +14,7 @@ tags:
   - 协议设计
   - 注册与登录
   - 成员函数指针
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

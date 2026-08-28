@@ -2,9 +2,10 @@
 title: "Linux 网络编程（19）：IM 聊天系统——转码、下线与聊天功能实现"
 published: 2026-08-11T00:00:00Z
 updated: 2026-08-11T00:00:00Z
-description: "Linux 网络编程课程第 19 课，整理 IM 聊天系统的用户下线、在线与离线聊天、添加好友请求持久化，以及 Qt 客户端和 VS 服务端之间的中文转码。"
+description: "Linux 网络编程系列第 19 篇，整理 IM 聊天系统的用户下线、在线与离线聊天、添加好友请求持久化，以及 Qt 客户端和 VS 服务端之间的中文转码。"
 image: ""
 tags:
+  - IM 聊天系统阶段
   - Linux
   - 网络编程
   - IM 聊天系统
@@ -14,7 +15,7 @@ tags:
   - 聊天功能
   - 添加好友
   - 字符编码
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

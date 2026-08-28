@@ -2,9 +2,10 @@
 title: "Linux 网络编程（14）：IM 聊天系统——网络功能实现：TCP 协议客户端"
 published: 2026-08-03T10:30:38Z
 updated: 2026-08-03T10:30:38Z
-description: "Linux 网络编程课程第 14 课，整理 IM 聊天系统中的 TCP 粘包处理、客户端数据收发，以及服务端监听、连接接收和目标套接字管理。"
+description: "Linux 网络编程系列第 14 篇，整理 IM 聊天系统中的 TCP 粘包处理、客户端数据收发，以及服务端监听、连接接收和目标套接字管理。"
 image: ""
 tags:
+  - IM 聊天系统阶段
   - Linux
   - 网络编程
   - IM 聊天系统
@@ -12,7 +13,7 @@ tags:
   - Winsock
   - 粘包
   - 多线程
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

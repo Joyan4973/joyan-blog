@@ -2,9 +2,10 @@
 title: "Linux 网络编程（16）：IM 聊天系统——中介者类实现与 Qt、VS 通信"
 published: 2026-08-05T13:59:39Z
 updated: 2026-08-05T13:59:39Z
-description: "Linux 网络编程课程第 16 课，整理 IM 聊天系统中介者类的实现，以及 Qt 客户端、VS 服务端、网络层与 Kernel 之间的数据传递。"
+description: "Linux 网络编程系列第 16 篇，整理 IM 聊天系统中介者类的实现，以及 Qt 客户端、VS 服务端、网络层与 Kernel 之间的数据传递。"
 image: ""
 tags:
+  - IM 聊天系统阶段
   - Linux
   - 网络编程
   - IM 聊天系统
@@ -13,7 +14,7 @@ tags:
   - Winsock
   - 中介者模式
   - 信号与槽
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

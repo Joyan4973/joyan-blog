@@ -11,7 +11,7 @@ tags:
   - 基础语法
   - 指针
   - 数据结构
-  - 课程笔记
+  - 学习笔记
 category: C 语言
 draft: false
 pinned: false

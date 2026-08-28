@@ -2,9 +2,10 @@
 title: "Linux 网络编程（6）：基于 TCP 协议的通信实现——客户端 & TCP 协议相关知识 1"
 published: 2026-07-23T14:36:56Z
 updated: 2026-07-23T14:36:56Z
-description: "Linux 网络编程课程第 6 课，整理 TCP 报文段首部、控制标志、MSS、确认应答、超时重传、三次握手、四次挥手、滑动窗口和流量控制。"
+description: "Linux 网络编程系列第 6 篇，整理 TCP 报文段首部、控制标志、MSS、确认应答、超时重传、三次握手、四次挥手、滑动窗口和流量控制。"
 image: ""
 tags:
+  - 网络基础阶段
   - Linux
   - 网络编程
   - TCP
@@ -13,7 +14,7 @@ tags:
   - 四次挥手
   - 滑动窗口
   - 流量控制
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

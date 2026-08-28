@@ -2,9 +2,10 @@
 title: "Linux 网络编程（10）：数据库语法 1"
 published: 2026-07-29T10:07:30Z
 updated: 2026-07-29T10:07:30Z
-description: "Linux 网络编程课程第 10 课，整理 MySQL 视图、自定义函数和变量，并介绍 IF、CASE 条件判断及 WHILE 循环的基本语法。"
+description: "Linux 网络编程系列第 10 篇，整理 MySQL 视图、自定义函数和变量，并介绍 IF、CASE 条件判断及 WHILE 循环的基本语法。"
 image: ""
 tags:
+  - 数据库阶段
   - Linux
   - 数据库
   - MySQL
@@ -12,7 +13,7 @@ tags:
   - 视图
   - 自定义函数
   - 流程控制
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

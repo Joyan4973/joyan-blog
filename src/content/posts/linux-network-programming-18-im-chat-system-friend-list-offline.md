@@ -2,9 +2,10 @@
 title: "Linux 网络编程（18）：IM 聊天系统——显示好友列表与下线功能实现"
 published: 2026-08-10T00:00:00Z
 updated: 2026-08-10T00:00:00Z
-description: "Linux 网络编程课程第 18 课，整理 IM 聊天系统的好友列表查询与推送、用户和套接字映射、上下线状态管理，以及 Qt 与 VS 之间的字符编码转换。"
+description: "Linux 网络编程系列第 18 篇，整理 IM 聊天系统的好友列表查询与推送、用户和套接字映射、上下线状态管理，以及 Qt 与 VS 之间的字符编码转换。"
 image: ""
 tags:
+  - IM 聊天系统阶段
   - Linux
   - 网络编程
   - IM 聊天系统
@@ -13,7 +14,7 @@ tags:
   - 好友列表
   - 在线状态
   - 字符编码
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

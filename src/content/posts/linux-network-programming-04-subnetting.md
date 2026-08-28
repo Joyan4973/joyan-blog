@@ -2,9 +2,10 @@
 title: "Linux 网络编程（4）：子网划分"
 published: 2026-07-21T10:09:27Z
 updated: 2026-07-21T10:09:27Z
-description: "Linux 网络编程课程第 4 课，整理 IPv4 子网划分、CIDR、UDP 广播、以太网帧、MTU、MSS 和 IPv4 数据报首部等知识。"
+description: "Linux 网络编程系列第 4 篇，整理 IPv4 子网划分、CIDR、UDP 广播、以太网帧、MTU、MSS 和 IPv4 数据报首部等知识。"
 image: ""
 tags:
+  - 网络基础阶段
   - Linux
   - 网络编程
   - 计算机网络
@@ -12,7 +13,7 @@ tags:
   - 子网划分
   - CIDR
   - UDP
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

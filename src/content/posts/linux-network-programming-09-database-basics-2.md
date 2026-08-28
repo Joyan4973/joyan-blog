@@ -2,16 +2,17 @@
 title: "Linux 网络编程（9）：数据库基础 2"
 published: 2026-07-28T15:06:47Z
 updated: 2026-07-28T15:06:47Z
-description: "Linux 网络编程课程第 9 课，整理 SQL 条件与模糊查询、分页、聚合与分组、排序去重，以及内连接、左连接和右连接等多表联查方法。"
+description: "Linux 网络编程系列第 9 篇，整理 SQL 条件与模糊查询、分页、聚合与分组、排序去重，以及内连接、左连接和右连接等多表联查方法。"
 image: ""
 tags:
+  - 数据库阶段
   - Linux
   - 数据库
   - MySQL
   - SQL
   - 数据查询
   - 多表联查
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

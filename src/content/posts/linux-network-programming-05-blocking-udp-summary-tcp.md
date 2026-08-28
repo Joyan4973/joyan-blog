@@ -2,9 +2,10 @@
 title: "Linux 网络编程（5）：阻塞、非阻塞 & UDP 总结"
 published: 2026-07-22T15:32:13Z
 updated: 2026-07-22T15:32:13Z
-description: "Linux 网络编程课程第 5 课，整理 Socket 缓冲区、阻塞与非阻塞模式、UDP 协议总结，并介绍 TCP 通信流程及服务端、客户端实现。"
+description: "Linux 网络编程系列第 5 篇，整理 Socket 缓冲区、阻塞与非阻塞模式、UDP 协议总结，并介绍 TCP 通信流程及服务端、客户端实现。"
 image: ""
 tags:
+  - 网络基础阶段
   - Linux
   - 网络编程
   - Socket
@@ -12,7 +13,7 @@ tags:
   - UDP
   - TCP
   - Winsock
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

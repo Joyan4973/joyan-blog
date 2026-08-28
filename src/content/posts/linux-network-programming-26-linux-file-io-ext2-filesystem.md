@@ -2,9 +2,10 @@
 title: "Linux 网络编程（26）：Linux 文件 I/O 与 ext2 文件系统"
 published: 2026-08-20T00:00:00Z
 updated: 2026-08-20T00:00:00Z
-description: "Linux 网络编程课程第 26 课，整理阻塞与非阻塞 I/O、fcntl、ext2 文件系统布局、inode 寻址、目录与路径查找、硬链接与符号链接，以及 stat、access 和 chmod 等文件接口。"
+description: "Linux 网络编程系列第 26 篇，整理阻塞与非阻塞 I/O、fcntl、ext2 文件系统布局、inode 寻址、目录与路径查找、硬链接与符号链接，以及 stat、access 和 chmod 等文件接口。"
 image: ""
 tags:
+  - Linux 工具与文件系统阶段
   - Linux
   - 网络编程
   - 文件 I/O
@@ -14,7 +15,7 @@ tags:
   - 文件系统
   - 硬链接
   - 符号链接
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

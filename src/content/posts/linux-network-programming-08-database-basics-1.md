@@ -2,9 +2,10 @@
 title: "Linux 网络编程（8）：数据库基础 1"
 published: 2026-07-27T15:48:54Z
 updated: 2026-07-27T15:48:54Z
-description: "Linux 网络编程课程第 8 课，整理 MySQL 与 Workbench、数据库基本概念、关系数据库范式、建表约束以及 SQL 增删改查。"
+description: "Linux 网络编程系列第 8 篇，整理 MySQL 与 Workbench、数据库基本概念、关系数据库范式、建表约束以及 SQL 增删改查。"
 image: ""
 tags:
+  - 数据库阶段
   - Linux
   - 数据库
   - MySQL
@@ -12,7 +13,7 @@ tags:
   - 数据库范式
   - DDL
   - CRUD
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

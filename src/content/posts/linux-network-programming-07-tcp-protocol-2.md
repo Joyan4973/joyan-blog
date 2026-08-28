@@ -2,9 +2,10 @@
 title: "Linux 网络编程（7）：TCP 协议相关知识 2"
 published: 2026-07-24T13:43:30Z
 updated: 2026-07-24T13:43:30Z
-description: "Linux 网络编程课程第 7 课，整理 TCP 粘包处理、心跳机制、Nagle 算法、拥塞控制、TCP 协议总结以及可靠 UDP 与 QUIC 等扩展知识。"
+description: "Linux 网络编程系列第 7 篇，整理 TCP 粘包处理、心跳机制、Nagle 算法、拥塞控制、TCP 协议总结以及可靠 UDP 与 QUIC 等扩展知识。"
 image: ""
 tags:
+  - 网络基础阶段
   - Linux
   - 网络编程
   - TCP
@@ -14,7 +15,7 @@ tags:
   - Nagle
   - 拥塞控制
   - QUIC
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

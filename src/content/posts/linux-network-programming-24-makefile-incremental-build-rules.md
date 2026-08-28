@@ -2,9 +2,10 @@
 title: "Linux 网络编程（24）：Makefile——增量编译、变量与规则"
 published: 2026-08-17T00:00:00Z
 updated: 2026-08-17T00:00:00Z
-description: "Linux 网络编程课程第 24 课，整理 Makefile 的增量编译原理、基本规则、自定义变量与自动变量、模式规则、内置函数，以及编译、清理和安装等功能目标。"
+description: "Linux 网络编程系列第 24 篇，整理 Makefile 的增量编译原理、基本规则、自定义变量与自动变量、模式规则、内置函数，以及编译、清理和安装等功能目标。"
 image: ""
 tags:
+  - Linux 工具与文件系统阶段
   - Linux
   - 网络编程
   - Makefile
@@ -14,7 +15,7 @@ tags:
   - 增量编译
   - 自动化构建
   - 编译
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

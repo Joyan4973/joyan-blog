@@ -2,9 +2,10 @@
 title: "Linux 网络编程（23）：Linux 编辑、编译与调试——Vim、GCC 与 GDB"
 published: 2026-08-16T00:00:00Z
 updated: 2026-08-16T00:00:00Z
-description: "Linux 网络编程课程第 23 课，整理 Vim 的模式与常用编辑操作、GCC 的多文件编译和宏定义选项，以及 GDB 的单步执行、变量查看与断点管理。"
+description: "Linux 网络编程系列第 23 篇，整理 Vim 的模式与常用编辑操作、GCC 的多文件编译和宏定义选项，以及 GDB 的单步执行、变量查看与断点管理。"
 image: ""
 tags:
+  - Linux 工具与文件系统阶段
   - Linux
   - 网络编程
   - Vim
@@ -14,7 +15,7 @@ tags:
   - 编译
   - 调试
   - 开发工具
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false

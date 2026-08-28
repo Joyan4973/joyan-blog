@@ -2,9 +2,10 @@
 title: "Linux 网络编程（25）：Linux 文件 I/O——文件描述符与系统调用"
 published: 2026-08-19T00:00:00Z
 updated: 2026-08-19T00:00:00Z
-description: "Linux 网络编程课程第 25 课，整理标准 I/O 与系统 I/O、文件描述符、open 和 close、错误处理、命令行参数、文件权限，以及 read、write 和 lseek 等系统调用。"
+description: "Linux 网络编程系列第 25 篇，整理标准 I/O 与系统 I/O、文件描述符、open 和 close、错误处理、命令行参数、文件权限，以及 read、write 和 lseek 等系统调用。"
 image: ""
 tags:
+  - Linux 工具与文件系统阶段
   - Linux
   - 网络编程
   - 文件 I/O
@@ -14,7 +15,7 @@ tags:
   - read
   - write
   - lseek
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false
@@ -104,7 +105,7 @@ Linux 把普通磁盘文件、终端设备和网络套接字等对象统一抽�
 - 内核空间由各进程共享映射；
 - 操作系统通过进程控制块等内核数据结构管理进程。
 
-具体划分可能因体系结构和内核配置而不同，图中展示的是课堂使用的典型模型。
+具体划分可能因体系结构和内核配置而不同，图中展示的是一种典型模型。
 
 ## 四、文件描述符
 

@@ -2,9 +2,10 @@
 title: "Linux 网络编程（15）：IM 聊天系统——网络功能实现：TCP 协议服务端"
 published: 2026-08-04T11:15:34Z
 updated: 2026-08-04T11:15:34Z
-description: "Linux 网络编程课程第 15 课，整理 IM 聊天系统 TCP 服务端的多客户端接收、线程与套接字映射、资源回收，以及网络层向中介者移交数据的实现。"
+description: "Linux 网络编程系列第 15 篇，整理 IM 聊天系统 TCP 服务端的多客户端接收、线程与套接字映射、资源回收，以及网络层向中介者移交数据的实现。"
 image: ""
 tags:
+  - IM 聊天系统阶段
   - Linux
   - 网络编程
   - IM 聊天系统
@@ -12,7 +13,7 @@ tags:
   - Winsock
   - 多线程
   - 中介者模式
-  - 课程笔记
+  - 学习笔记
 category: Linux 网络编程
 draft: false
 pinned: false
@@ -289,7 +290,7 @@ class INetMediator;
 class INet;
 ```
 
-前置声明适用于这里只定义指针的情况。老师同时强调：被前置声明的类必须真实存在于项目中，类名不能写错。
+前置声明适用于这里只定义指针的情况。需要注意：被前置声明的类必须真实存在于项目中，类名不能写错。
 
 去掉间接包含关系后，`main.cpp` 中的 `Sleep()`、`inet_addr()` 若无法识别，在 `main.cpp` 中补充：
 

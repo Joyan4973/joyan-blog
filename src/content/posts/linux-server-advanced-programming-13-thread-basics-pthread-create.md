@@ -1,7 +1,7 @@
 ---
 title: "Linux 服务器高阶编程（13）：线程基础、资源共享与 pthread 创建"
-published: 2026-11-08T00:00:00Z
-updated: 2026-11-08T00:00:00Z
+published: 2026-11-07T00:00:00Z
+updated: 2026-11-07T00:00:00Z
 description: "整理线程与进程的区别、线程调度模型及共享资源，介绍 NPTL、pthread_create、线程标识与线程数量限制。"
 image: ""
 tags:
